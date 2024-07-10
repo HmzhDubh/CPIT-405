@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lab 4</title>
+    <style>
+
+        form{
+            width: 60vw;
+            max-width: 500px;
+            min-width: 300px;
+            margin: 0 auto;
+            padding-bottom: 2em;
+        }
+        body {
+            vertical-align: middle;
+            width: 100%;
+            height: 100vh;
+            margin: 0;
+            background-color: #1b1b32;
+            color: #f5f6f7;
+            font-family: Tahoma;
+            font-size: 16px;
+        }
+        input, textarea {
+            background-color: #0a0a23;
+            border: 1px solid #0a0a23;
+            color: #ffffff;
+            margin: 10px 0 0 0;
+            width: 100%;
+            min-height: 2em;
+
+        }
+        label{
+            display: block;
+            margin: 0.5rem 0;
+
+        }
+        input[type="submit"] {
+          display: block;
+          width: 60%;
+          margin: 1em auto;
+          height: 2em;
+          font-size: 1.1rem;
+          background-color: #3b3b4f;
+          border-color: white;
+          min-width: 300px;
+        }
+        hr {
+
+            margin: 20px;
+            background-color: black;
+            border: 1.5px solid black;
+        }
+    </style>
+</head>
+<body>
+
+<form action="lab2And3.html">
+    <h1>Great Auto Parts - Order Form</h1>
+    <label for="fname">First Name:</label>
+    <input id="fname" type="text" placeholder="Enter Your First Name">
+
+    <label for="lname">Last Name:</label>
+    <input id="lname" type="text" placeholder="Enter Your Last Name">
+
+    <label for="email">Email:</label>
+    <input id="email" type="email" placeholder="Enter Your Email">
+
+    <label for="pnum">Phone Number:</label>
+    <input id="pnum" type="text" placeholder="Enter Your Phone Number">
+    <hr>
+    <label for="make">Make: </label>
+    <input id="make" type="text" placeholder="Make">
+
+    <label for="model">Model:</label>
+    <input id="model" type="text" placeholder="Enter Model">
+
+    <label for="year">Year:</label>
+    <input id="year" type="number" placeholder="Year">
+
+    <label for="date">Date:</label>
+    <input id="date" type="date" placeholder="Enter date">
+
+    <label for="sparePart">Spare Part:</label>
+    <input id="sparePart" type="text" placeholder="Enter Spare Part">
+
+    <label for="quantity">Quantity:</label>
+    <input id="quantity" type="number" placeholder="Quantity">
+    <hr>
+    <label for="comment">Comment:</label>
+    <textarea id="comment" placeholder="Enter Your Comment: " rows="8"></textarea>
+
+    <input id="submit" type="submit">
+</form>
+
+</body>
+</html>

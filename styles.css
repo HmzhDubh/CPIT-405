@@ -1,6 +1,7 @@
 a{
     background-color: Green;
     color: black;
+    text-align:center;
 }
 
 hr{
@@ -58,4 +59,8 @@ div{
 span { color: green; }
 #header *:last-child { color: orange; }
 #header span:first-child:hover { color: blue; }
+
+h2{
+    text-align: center;
+}
 

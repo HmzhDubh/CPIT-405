@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Internet And The Web</title>
+    <link rel="stylesheet" href="./stylesOfChapter.css">
+
+</head>
+<body>
+
+    <div class="cover-page">
+        <h1>The Internet And The Web (HTTP)</h1>
+    </div>
+    <hr>
+    <section id="internet-section">
+    <div>
+        <h2 class="list-header">Internet: </h2>
+        <ul>
+            <li>Is large Retrieval interconnected computer networks system uses the protocols to synch communication</li>
+            <li>It's an infrastructure for global communication, networks exchange files and communicate through it</li>
+            <ul>
+                <li class="list-header">Internet Applications: </li>
+                <li>Email</li>
+                <li>Messaging</li>
+                <li>File Transfer</li>
+                <li>Streaming</li>
+                <li>DNS</li>
+            </ul>
+        </ul>
+    </div>
+    <hr>
+    </section>
+    <section id="web-section">
+    <div>
+        <h2>The Web</h2>
+        <p>WWW - World Wide Web: is and information system enables sharing documents and other content over the internet using HTTP protocol </p>
+        <ul>
+            <h3>Openness and Accessibility: By providing user-friendly access to information over the internet </h3>
+            <li>Relies on <strong>web browser</strong> for display</li>
+            <li><strong>Many formats</strong> for contents (text, image, video</li>
+            <li>And the most important it uses <strong>hyperlinks</strong> for navigation </li>
+            <ul>
+                <li class="list-header">Web Applications: </li>
+                <li>News Websites</li>
+                <li>Shopping websites</li>
+                <li>Social media</li>
+                <li>learning platforms</li>
+                <li>Tools like google colaboratory</li>
+            </ul>
+        </ul>
+        <hr>
+        <h2>Protocols of the web</h2>
+        <p>protocols manage how browsers(clients) and servers communicate by enabling data transfer and render websites</p>
+        <p>It is important to understand protocols to develop <strong>secure</strong> and <strong>efficient</strong> and <strong>usable</strong> web applications</p>
+        <hr>
+        <h2>HTTP</h2>
+        <ul>
+            <li>HTTP: is a foundation of communication between browsers and servers</li>
+            <li><strong>Request:</strong> is what browser use to ask for a resource or information necessary to render the web page</li>
+            <li>- which means the server doesn't store information about clients between different requests </li>
+            <li>HTTP is "stateless" protocol which means requests runs independently of other requests</li>
+            <li>HTTP request contain:  </li>
+            <ul>
+                <li>HTTP version type eg, HTTP/1, HTTP/2, HTTP/3</li>
+                    <ul>
+                        <li>HTTP/1: uses single TCP connection per request aka sequential communication, which leads to <strong>Limited multiplexing: </strong> connetction can handle multiple requests but not efficiently  </li>
+                        <li>HTTP/2: Extends use of connection by multiplexing concurrent req/responds via single connection, It also uses more efficient dota transfer bin format and compress the headers to reduce data transfer</li>
+                        <li>HTTP3: uses QUIC and UDP protocols <strong>QUIC: </strong> transfer protocol designed for mobil-heavy internet usage. <strong>UDP:</strong>provide faster connection and performance. They both address netwrok switching problrms and security by built-in encryption methods </li>
+                    </ul>
+                <li>URL</li>
+                <ul>
+                    <li>Uniform Resource Locator: reference for and address of a resource on the internet </li>
+                    <li>URI: uniform Resource Identifier: a broader concept used to name the resources, It doesn't necessarily locate the resource </li>
+                    <li>URL Components: </li>
+                    <ul>
+                        <li>Protocol: ie, HTTP, HTTPS, FTP</li>
+                        <li>Domain Name: human-readable name</li>
+                        <li>Port: of the server the client should contact ie, 80, 443</li>
+                        <li>Path: specific resource path on the server </li>
+                        <li>Query String: to include additional data to be sent to the server <strong>Starts with ? symbol</strong> </li>
+                        <li>Fragment: spicify an element of html <strong>starts by a hash # </strong></li>
+                    </ul>
+                </ul>
+                <li>HTTP Method like GET, POST,PUT, etc used to indicate an action to be performed by the server </li>
+
+                <li>Request headers And optional body</li>
+                <ul>
+                    <li><strong>Headers:</strong> Are additional data for context  and instructions to enable a better understanding between the client and the server </li>
+                    <li>Common headers:</li>
+                    <ul>
+                        <li>Authorization: contain credentials to auth user agent with server</li>
+                        <li>Content-type: media type of the body  of the request</li>
+                        <li>User-agent: app type, os of client</li>
+                        <li>Cookies: stored files sent by the server previously  </li>
+                    </ul>
+                    <li><strong>Body</strong></li>
+                    <ul>
+                        <li>Actual data to be sent to the server ie. Login Data </li>
+                        <li>Format can be JSON, XML or binary any format client and server agree to use </li>
+                        <li>it is optional not all request contain body </li>
+                    </ul>
+                </ul>
+                <li>HTTP Status Codes</li>
+                <ul>
+                    <li>100s : Informational As the request is received and continue processing it</li>
+                    <li>200s : Successfully received and understood, and accepted ig. 200 OK </li>
+                    <li>300s : Redirection, further action will be performed to complete request </li>
+                    <li>400s : Client Error, client sent bad syntax or request cannot be fulfilled ig. 404 NOT FOUND</li>
+                    <li>500s : Server Error, server failed to complete a valid request ig. 500 SERVER INTERNAL ERROR</li>
+                </ul>
+            </ul>
+        </ul>
+
+    </div>
+    <hr>
+    </section>
+    <section id="html-section">
+        <h1>HTML </h1>
+        <p>HyperText Markup Language: basic building block of web pages, uses <> tags to display content accordingly.</p>
+        <p>The purpose is to describe the structure of the web page by defining headers, paragraphs, lists, links, imgs, tables and many more. </p>
+        <p>Standardized by W3C and maintained by WHATWG at <a href="https://html.spec.whatwg.org">https://html.spec.whatwg.org</a></p>
+        <h3>Concepts and Syntax</h3>
+        <ul>
+            <li>HTML Elements</li>
+            <img id="html-elements-img" width="450" height="300" src="https://cpit405.github.io/html-slides/images/html-element.svg" alt="HTML Elements">
+            <li>HTML Attributes</li>
+            <img id="html-attributes-img" width="450" height="150" src="https://cpit405.github.io/html-slides/images/html-attribute.png" alt="HTML Attributes">
+            <li><strong>!DOCTYPE Elements</strong></li>
+            <li>Placed at the top of the html page to indicate no Quirks mood and emulate the behavior specified in the html and css files only  </li>
+            <li> <strong>Head Element:</strong> contain elements that won't be displayed in browsers, contain meta title link elements which describe data about the html file such as charset and link to the css file, ot script of JS </li>
+            <li> <strong>Body Element:</strong> Represents the content of the html document, only one body allowed </li>
+            <li>HTML element according to its function: </li>
+            <ul>
+                <li>Text: </li>
+                <ul>
+                    <li>H1 .. H6 headers </li>
+                    <li>p fpr paragraphs</li>
+                </ul>
+                <li>In-line text elements</li>
+                <ul>
+                    <li>anchors a </li>
+                    <li>span, strong, em, sup, and sub</li>
+                </ul>
+                <li>multimedia</li>
+                <ul>
+                    <li>img, video, and audio  </li>
+
+                </ul>
+                <li>List and table</li>
+                <ul>
+                    <li>ul, ol, dl, and table</li>
+                </ul>
+                <li>section contents</li>
+                <ul>
+                    <li>section, main, header, nav, footer, article, aside</li>
+                </ul>
+                <li>Input forms</li>
+                <ul>
+                    <li>label, input, form, select, textarea, and button </li>
+                </ul>
+            </ul>
+        </ul>
+        <h4>Inline Elements:</h4>
+        <ol>
+            <li>Don't start a new line </li>
+            <li>Cannot contain Block elements</li>
+            <li>Avoid using block elements within inline</li>
+            <li>it may be used to format text within a block element</li>
+            <li>EXAMPLES: a, span, input, button, label, and code</li>
+
+        </ol>
+        <h4>Block Elements:</h4>
+        <ol>
+            <li>Start a new line </li>
+            <li>Can contain inline elements</li>
+            <li>it can use inline element</li>
+            <li>EXAMPLES: a, span, input, button, label, and code</li>
+
+        </ol>
+    </section>
+
+
+
+</body>
+</html>

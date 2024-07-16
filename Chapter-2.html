@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CSS</title>
+    <link rel="stylesheet" href="stylesOfChapter.css">
+    <meta name="viewport" content="width=device-width  initial-scale=1.0">
+</head>
+<body>
+    <div class="cover-page">
+        <h1>CSS: Cascading Styling Sheet </h1>
+        <nav>
+            <a href="#intro-section">Introduction</a>
+            <a href="#fund-section">Fundamentals</a>
+        </nav>
+    </div>
+    <section id="intro-section">
+        <div class="introduction-page">
+            <h2>Introduction</h2>
+            <p>CSS is a language to specify the presentation and the styling of the HTML document</p>
+            <p>And it is dedicated to define visual styling like font, color, layout, and animation, etc</p>
+            <p><strong>Cascade: </strong> is the core of an algorithm to solve conflicts as multiple rules applied to a HTML element</p>
+            <p>CSS supports is inconsistent between browsers</p>
+        </div>
+    </section>
+    <section id="fund-section">
+        <div>
+            <h2>Fundamentals</h2>
+            <h3>Basic Structure:</h3>
+            <img src="https://cpit405.github.io/css-slides/images/css-structure.png" alt="fund-img" width="450" height="200">
+            <hr>
+            <p>referencing CSS to be applied can be done in Three locations:</p>
+            <ol>
+                <li><strong>Internal:</strong> In the head section using the <em>style</em> tag</li>
+                <li><strong>Inline: </strong> Within the html Element that is meant to be styled passed as an attribute to it ie, style="..."</li>
+                <li><strong>External: </strong> A CSS extension file includes all styling and referred to it in the head in a link element, link uses rel, href, and media ie, "print" attributes to refer to the styling sheet.
+                </li>
+                <li><strong>Browser-Default stylesheet:</strong></li>
+                <ul>
+                    <li>web browser may apply default styling when rendering the page</li>
+                    <li>each browser has set of default styles and vary from one to another </li>
+                    <li>Dev override these default styles by specifying their own styles </li>
+                </ul>
+                <li><strong>User Stylesheet: </strong></li>
+                <ul>
+                    <li>some browsers provide the ability for users to customize their own styles </li>
+                    <li>It can affect browser stability and security</li>
+                </ul>
+            </ol>
+            <hr>
+            <h3>Cascading order algorithm :</h3>
+            <dl>
+                <dt>Algorithm Steps: </dt>
+                <dd>
+                    <ol>
+                        <li>Relevance: All rules filtered from different sources and keep rules apply to a given element amd appropriate media  </li>
+                        <li>Origin And Importance: ie, important flag</li>
+                        <li>Specificity: specificity of a rule when chossing one value or another</li>
+                        <li>Scooping Proximity: styles defied closer to an element have more influence that the further away ie, inline then internal then external and finally the browser default </li>
+                        <li>Order OF Appearance: if multiple rules with same power and location the last one will be applied</li>
+                    </ol>
+                </dd>
+            </dl>
+            <hr>
+            <h3>CSS Selectors: </h3>
+            <ol>
+                <li>Universal Selector: " * " for all elements in an HTML documnet </li>
+                <li>Element Selector: select an HTML element like h1 or p etc</li>
+                <li>ID Selector: specify the element with the <strong>unique</strong> id match it starting with a " # " ig. #nav-bar </li>
+                <li>Class Selector: specify elements with the class starting with a " . " ig. .header</li>
+                <li>Attribute Selector: specify an element with a specific attribute ie, img[alt]</li>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Selector</th>
+                            <th>Description</th>
+                            <th>Example</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th>[attr]</th>
+                            <td>Match the element that have attr attribute declared</td>
+                            <td><code>input[required]</code></td>
+                        </tr>
+                        <tr>
+                            <th>[attr=value]</th>
+                            <td>Match the element that have attr attribute declared whose value is <strong>exactly = value</strong></td>
+                            <td><code>input[type="password"]</code></td>
+                        </tr>
+                        <tr>
+                            <th>[attr~=value]</th>
+                            <td>Match the element that have attr attribute declared whose value is exactly = value <strong>OR</strong> the value is in the list of values that are space separated</td>
+                            <td><code>p[class~=special]</code></td>
+                        </tr>
+                        <tr>
+                            <th>[attr^=value]</th>
+                            <td>Match the element that have attr attribute declared whose values list <strong>Begins</strong> with exactly = "value"</td>
+                            <td><code>p[class^=box]</code></td>
+                        </tr>
+                        <tr>
+                            <th>[attr$=value]</th>
+                            <td>Match the element that have attr attribute declared whose values list <strong>Ends</strong> with exactly = "value"</td>
+                            <td><code>p[class^=box]</code></td>
+                        </tr>
+                        <tr>
+                            <th>[attr$=value]</th>
+                            <td>Match the element that have attr attribute declared whose values list <strong>Contains anywhere</strong> "value" within the value list</td>
+                            <td><code>p[class^=box]</code></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <li>Combinator Selector: combine multiple elements in a single selector</li>
+                    <ul>
+                        <li>1- Descendant Selector: selector1 selector2: all elements <strong>inside</strong> the first selectors that matches the second are selected</li>
+                        <li>2- Child selector: element1 > element2: all <strong>direct children</strong> of the first selector that matches the second one are selected</li>
+                        <li>3- General Sibling: selector2 ~ selector2: all <strong>siblings</strong> of the first elements that matches the second one are selected</li>
+                        <li>4- Adjacent Sibling: selector1 + selector2: the immediate sibling of the first element is selected</li>
+                    </ul>
+                <li>Pseudo-Classes</li>
+                    <ul>
+                        <li>Syntax: <code>selector:pseudo-class {style properties} </code></li>
+                        <li>It indicates a special state of that selected element ie, hover, clicked on</li>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Pseudo-class</th>
+                                    <th>Description</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>:visited</th>
+                                    <td>Visited link</td>
+                                </tr>
+                                <tr>
+                                    <th>:hover</th>
+                                    <td>mouse only hovered on a link</td>
+                                </tr>
+                                <tr>
+                                    <th>:required</th>
+                                    <td>form element is required</td>
+                                </tr>
+                                <tr>
+                                    <th>:optional</th>
+                                    <td>form element is optional</td>
+                                </tr>
+                                <tr>
+                                    <th>:first/last/nth-child</th>
+                                    <td>first or last or the nth-child(ie, 5) child of the selector element</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </ul>
+                <li>Pseudo-Elements</li>
+                <ul>
+                    <li><code>::first-line</code> : style the first line of the block line element
+                    <p> The length of the first line depends on the width of the element, or the document and the font size</p>
+                    </li>
+                    <li><code>::after</code> : add last child or new content to the selected element</li>
+                    <li><code>::before</code> : add first child or new content at the beginning to the selected element</li>
+                    <li><code>::selection</code> : style element that has been highlighted by the user </li>
+                </ul>
+            </ol>
+            <hr>
+            <h2>CSS Properties</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>CSS property</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th><code>color</code></th>
+                        <td>set the color of the text</td>
+                    </tr>
+                    <tr>
+                        <th><code>background-color</code></th>
+                        <td>set the background color of the element </td>
+                    </tr>
+                    <tr>
+                        <th><code>font-size</code></th>
+                        <td>set the font size of the text </td>
+                    </tr>
+                    <tr>
+                        <th><code>font-family</code></th>
+                        <td>set the font family of the text </td>
+                    </tr>
+                    <tr>
+                        <th><code>text-align</code></th>
+                        <td>set the align of the text within the element</td>
+                    </tr>
+                    <tr>
+                        <th><code>margin</code></th>
+                        <td>set the margin of the element </td>
+                    </tr>
+                    <tr>
+                        <th><code>padding</code></th>
+                        <td>set the padding of the element </td>
+                    </tr>
+                    <tr>
+                        <th><code>border</code></th>
+                        <td>set the border of the element </td>
+                    </tr>
+                    <tr>
+                        <th><code>border-radius</code></th>
+                        <td>Define the border corners of the element </td>
+                    </tr>
+                    <tr>
+                        <th><code>width</code></th>
+                        <td>set the width of the element </td>
+                    </tr>
+                    <tr>
+                        <th><code>height</code></th>
+                        <td>set the height of the element </td>
+                    </tr>
+                    <tr>
+                        <th><code>display</code></th>
+                        <td>specify how the element should be displayed ie, block, inline, flex, or grid</td>
+                    </tr>
+                    <tr>
+                        <th><code>position</code></th>
+                        <td>specify the type of positioning for an element ie, static, absolute, relative, fixed, sticky  </td>
+                    </tr>
+                    <tr>
+                        <th><code>opacity</code></th>
+                        <td>set the opacity level of the element </td>
+                    </tr>
+                    <tr>
+                        <th><code>transition</code></th>
+                        <td>specify the speed curve of the transition effect </td>
+                    </tr>
+                    <tr>
+                        <th><code>transform</code></th>
+                        <td>apply 2d, 3d transformations to the element </td>
+                    </tr>
+                    <tr>
+                        <th><code>overflow</code></th>
+                        <td>specify what happen if element overflow another elements box</td>
+                    </tr>
+                    <tr>
+                        <th><code>float</code></th>
+                        <td>specify how an element should float </td>
+                    </tr>
+                    <tr>
+                        <th><code>clear</code></th>
+                        <td>specify the side in which the element should not allow to float</td>
+                    </tr>
+                    <tr>
+                        <th><code>visibility</code></th>
+                        <td>set the visibility of the element </td>
+                    </tr>
+                    <tr>
+                        <th><code>line-height</code></th>
+                        <td>set the line height </td>
+                    </tr>
+                </tbody>
+            </table>
+            <h2> CSS comments</h2>
+            <code>/* This is how to use comments in CSS */</code>
+            <h2>CSS Box Model</h2>
+            <ul>
+                <li>Fundamental concept in css to define how elements rendered on the screen</li>
+                <li>Each element is represented as a rectangle box, <strong>box contain</strong> <em>Content, Padding, Border and, Margin</em></li>
+                <li><strong>The content: </strong> The actual content of the element</li>
+                <li><strong>The padding: </strong> The space between the content and the border</li>
+                <li><strong>The border: </strong> The line around the element (padding and content)</li>
+                <li><strong>The Margin: </strong> The space around the border</li>
+
+            </ul>
+            <img src="https://cpit405.github.io/css-slides/images/css-box-model.svg" alt="css Box Model">
+        </div>
+    </section>
+
+
+</body>
+</html>

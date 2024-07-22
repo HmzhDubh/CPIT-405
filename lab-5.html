@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Group lap</title>
+    <style>body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.photo {
+    margin: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    overflow: hidden;
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.photo img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.zoom-in, .zoom-out {
+    position: absolute;
+    bottom: 5px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: none;
+    cursor: pointer;
+}
+
+.zoom-in {
+    left: 5px;
+}
+
+.zoom-out {
+    right: 5px;
+}
+    </style>
+</head>
+<body>
+<h2>Group Effort:</h2>
+<header>
+    <h2>Moath Alsolami</h2>
+    <h2>Muhanned Almehmadi</h2>
+    <h2>Majed Aljehani</h2>
+    <h2>Hamza Dubh</h2>
+</header>
+<h1>Photo Gallery</h1>
+<div id="gallery"></div>
+<input type="text" id="photo-url" placeholder="Enter photo URL ">
+<input type="file" id="photo-file">
+<button id="add-photo">Add Photo</button>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+    const gallery = document.getElementById('gallery');
+    const photoUrlInput = document.getElementById('photo-url');
+    const photoFileInput = document.getElementById('photo-file');
+    const addPhotoButton = document.getElementById('add-photo');
+
+    addPhotoButton.addEventListener('click', () => {
+        const photoUrl = photoUrlInput.value.trim();
+        const photoFile = photoFileInput.files[0];
+
+        if (photoUrl) {
+            addPhoto(photoUrl);
+            photoUrlInput.value = '';
+        } else if (photoFile) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                addPhoto(e.target.result);
+            };
+            reader.readAsDataURL(photoFile);
+            photoFileInput.value = '';
+        }
+    });
+
+    function addPhoto(src) {
+        const photoDiv = document.createElement('div');
+        photoDiv.className = 'photo';
+
+        const img = document.createElement('img');
+        img.src = src;
+
+
+        const zoomInButton = document.createElement('button');
+        zoomInButton.className = 'zoom-in';
+        zoomInButton.innerText = '+';
+        zoomInButton.addEventListener('click', () => zoomIn(img));
+
+        const zoomOutButton = document.createElement('button');
+        zoomOutButton.className = 'zoom-out';
+        zoomOutButton.innerText = '-';
+        zoomOutButton.addEventListener('click', () => zoomOut(img));
+
+        photoDiv.appendChild(img);
+        photoDiv.appendChild(zoomInButton);
+        photoDiv.appendChild(zoomOutButton);
+
+        gallery.appendChild(photoDiv);
+    }
+
+    function zoomIn(img) {
+        img.style.width = (img.clientWidth * 1.2) + 'px';
+        img.style.height = (img.clientHeight * 1.2) + 'px';
+    }
+
+    function zoomOut(img) {
+        img.style.width = (img.clientWidth / 1.2) + 'px';
+        img.style.height = (img.clientHeight / 1.2) + 'px';
+    }
+});
+
+</script>
+</body>
+</html>

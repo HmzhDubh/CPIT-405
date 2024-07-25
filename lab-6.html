@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Like or Dislike</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+        }
+
+        .counter-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .counter-box {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            margin: 0 10px;
+            width: 100px;
+            height: 50px;
+            background-color: #f2f2f2;
+        }
+
+        .counter-box .emoji {
+            font-size: 30px;
+            margin-right: 10px;
+        }
+
+        .counter-box .counter {
+            font-size: 24px;
+        }
+
+        .btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            outline: none;
+        }
+
+        .btn.disabled {
+            cursor: not-allowed;
+        }
+        h2 em {
+            background-color: black;
+            color: yellow;
+        }
+
+    </style>
+</head>
+<body>
+<h2>Group Effort:</h2>
+<header>
+    <h2>Majed Aljehani</h2>
+    <h2>Moath Alsolami</h2>
+    <h2>Muhanned Almehmadi</h2>
+    <h2>Hamza Dubh</h2>
+</header>
+<h2><em>Do You Like or Dislike Our Work ?</em></h2>
+<div class="counter-container">
+    <button id="like-button" class="btn">
+        <div class="counter-box">
+            <div class="emoji">👍</div>
+            <div id="like-counter" class="counter">100</div>
+        </div>
+    </button>
+    <button id="dislike-button" class="btn">
+        <div class="counter-box">
+            <div class="emoji">👎</div>
+            <div id="dislike-counter" class="counter">20</div>
+        </div>
+    </button>
+</div>
+
+<script>
+    function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            const date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + (value || "") + expires + "; path=/";
+    }
+
+    function getCookie(name) {
+        const nameEQ = name + "=";
+        const ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) === ' ') c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const likeButton = document.getElementById('like-button');
+        const dislikeButton = document.getElementById('dislike-button');
+        const likeCounter = document.getElementById('like-counter');
+        const dislikeCounter = document.getElementById('dislike-counter');
+
+        let likes = parseInt(localStorage.getItem('likes')) || 100;  // Starting count for likes
+        let dislikes = parseInt(localStorage.getItem('dislikes')) || 20;  // Starting count for dislikes
+
+        likeCounter.textContent = likes;
+        dislikeCounter.textContent = dislikes;
+
+        if (getCookie('voted')) {
+            likeButton.classList.add('disabled');
+            dislikeButton.classList.add('disabled');
+            likeButton.disabled = true;
+            dislikeButton.disabled = true;
+        }
+
+        likeButton.addEventListener('click', () => {
+            if (!getCookie('voted')) {
+                likes++;
+                localStorage.setItem('likes', likes);
+                likeCounter.textContent = likes;
+                setCookie('voted', true, 365);
+                likeButton.classList.add('disabled');
+                dislikeButton.classList.add('disabled');
+                likeButton.disabled = true;
+                dislikeButton.disabled = true;
+            }
+        });
+
+        dislikeButton.addEventListener('click', () => {
+            if (!getCookie('voted')) {
+                dislikes++;
+                localStorage.setItem('dislikes', dislikes);
+                dislikeCounter.textContent = dislikes;
+                setCookie('voted', true, 365);
+                likeButton.classList.add('disabled');
+                dislikeButton.classList.add('disabled');
+                likeButton.disabled = true;
+                dislikeButton.disabled = true;
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
 
 :root{
-  --red:#ff3838;
+  --saddleBrown:#8E3329;
 }
 
 *{
@@ -15,7 +15,7 @@
 }
 
 *::selection{
-  background:var(--red);
+  background:var(--saddleBrown);
   color:#fff;
 }
 
@@ -29,7 +29,9 @@ html{
 body{
   background:#f7f7f7;
 }
-
+#mh3 {
+    color: var(--saddleBrown);
+}
 section{
   padding:2rem;
   margin: 0 auto;
@@ -44,14 +46,14 @@ section{
 }
 
 .heading span{
-  color:var(--red);
+  color:var(--saddleBrown);
 }
 
 .btn{
   display: inline-block;
   padding:.8rem 3rem;
-  border:.2rem solid var(--red);
-  color:var(--red);
+  border:.2rem solid var(--saddleBrown);
+  color:var(--saddleBrown);
   cursor: pointer;
   font-size: 1.7rem;
   border-radius: .5rem;
@@ -64,7 +66,7 @@ section{
 .btn1{
   display: inline-block;
   padding:.8rem 3rem;
-  color:var(--red);
+  color:var(--saddleBrown);
   cursor: pointer;
   font-size: 1.7rem;
   border-radius: .5rem;
@@ -80,7 +82,7 @@ section{
   top:0; right: 0;
   width:0%;
   height:100%;
-  background:var(--red);
+  background:var(--saddleBrown);
   transition: .3s linear;
   z-index: -1;
 }
@@ -119,17 +121,17 @@ header .logo{
 
 header .logo i{
   padding-right: .5rem;
-  color:var(--red);
+  color:var(--saddleBrown);
 }
 
-header .navbar a{
+header .navigator a{
   font-size: 2rem;
   margin-left: 2rem;
   color:#666;
 }
 
-header .navbar a:hover{
-  color:var(--red);
+header .navigator a:hover{
+  color:var(--saddleBrown);
 }
 
 #menu-bar{
@@ -276,7 +278,7 @@ header .navbar a:hover{
 .popular .box-container .box .price{
   position: absolute;
   top:3rem; left:3rem;
-  background:var(--red);
+  background:var(--saddleBrown);
   color:#fff;
   font-size: 2rem;
   padding:.5rem 1rem;
@@ -326,7 +328,9 @@ header .navbar a:hover{
   color:#333;
   padding:1rem;
 }
-
+.steps h3 span{
+    color: var(--saddleBrown)
+}
 .gallery .box-container{
   display: grid;
   grid-template-columns: repeat(auto-fit, 35rem);
@@ -416,7 +420,7 @@ header .navbar a:hover{
 
 .review .box-container .box .stars i{
   font-size: 2rem;
-  color:var(--red);
+  color:var(--saddleBrown);
   padding:.5rem 0;
 }
 
@@ -481,7 +485,7 @@ header .navbar a:hover{
 }
 
 .order .row form .btn:hover{
-  background:var(--red);
+  background:var(--saddleBrown);
 }
 
 .footer{
@@ -508,7 +512,7 @@ section{
 }
 
 .footer section .credit span{
-  color:var(--red);
+  color:var(--saddleBrown);
 }
 
 #scroll-top{
@@ -519,7 +523,7 @@ section{
   width: 5rem;
   line-height: 4.5rem;
   text-align: center;
-  background:var(--red);
+  background:var(--saddleBrown);
   color:#fff;
   border-radius: .5rem;
   transition: .5s linear;
@@ -548,17 +552,6 @@ section{
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 /* media queries  */
 
 @media(max-width:991px){
@@ -575,7 +568,7 @@ section{
     display: initial;
   }
 
-  header .navbar{
+  header .navigator{
     position: absolute;
     top:100%; left: 0; right:0;
     background: #f7f7f7;
@@ -583,16 +576,16 @@ section{
     clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
   }
 
-  header .navbar.active{
+  header .navigator.active{
     clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
   }
 
-  header .navbar a{
+  header .navigator a{
     margin: 1.5rem;
     padding:1.5rem;
     display: block;
     border:.2rem solid rgba(0,0,0,.1);
-    border-left:.5rem solid var(--red);
+    border-left:.5rem solid var(--saddleBrown);
     background:#fff;
   }
 

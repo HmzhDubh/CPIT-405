@@ -5,6 +5,58 @@
     <meta name="Hmzh Dubh" content=" CPIT-405">
     <title>CPIT-405-Labs</title>
     <style>
+        :root {
+          --dark-grey: #0a0a23;
+          --white: #ffffff;
+          --yellow: #f1be32;
+        }
+        body {
+          color: var(--white);
+          background-color: var(--dark-grey);
+        }
+        .title-container {
+          margin: 10px 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 8px;
+        }
+        .title {
+            font-size: 2.5rem;
+        }
+        .divider {
+          margin: auto;
+          width: 150px;
+          height: 10px;
+          background-color: var(--yellow);
+        }
+        .dropdown-container {
+          width: 80%;
+          margin: 30px auto;
+          position: relative;
+        }
+        select {
+          display: block;
+          margin: 20px auto 0;
+          width: 100%;
+          height: 50px;
+          font-size: 100%;
+          font-weight: bold;
+          cursor: pointer;
+          background-color: var(--white);
+          border: none;
+          color: var(--dark-grey);
+          appearance: none;
+          padding: 10px;
+          padding-right: 38px;
+          transition: color 0.3s ease, background-color 0.3s ease,
+          border-bottom-color 0.3s ease;
+        }
+        #current-date {
+          font-size: 2rem;
+          text-align: center;
+        }
+
         h1 {
             display: block;
             margin-block-start: 1.33em;
@@ -13,8 +65,8 @@
             margin-inline-end: 0px;
             font-weight: bold;
             unicode-bidi: isolate;
-
         }
+
         .box {
             background-color: #fff;
             border-radius: 6px;
@@ -29,13 +81,15 @@
             color: #818181;
             background-color: #f5f8fc;
             margin: 1.5em;
+            text-align: center;
 
         }
         a{
             text-decoration: none;
+            color: var(--yellow)
         }
         .proj-box{
-            background-color: grey;
+            background-color: white;
         }
         .proj-box a{
             color: red;
@@ -43,6 +97,21 @@
     </style>
 </head>
 <body>
+    <div class="title-container">
+        <h2 class="title">Today's Date</h2>
+    </div>
+    <div class="divider"></div>
+    <div class="dropdown-container">
+        <select name="date-options" id="date-options">
+            <option value="dd-mm-yyyy">Day, Month, Year</option>
+            <option value="yyyy-mm-dd">Year, Month, Day</option>
+            <option value="mm-dd-yyyy-h-mm">
+                Month, Day, Year, Hours, Minutes
+            </option>
+        </select>
+    </div>
+    <p id="current-date"></p>
+    <div class="divider"></div>
     <div class="box">
         <h1>
             <a href="chapters/Chapter-1-InternetAndTheWeb.html">Chapter One - Summary</a>
@@ -54,7 +123,7 @@
             <a href="chapters/Chapter-2.html">Chapter Two - Summary</a>
         </h1>
     </div>
-    <hr>
+    <hr class="divider">
     <div class="box">
         <h1>
             <a href="labs/lab-1.html">Lab 1</a>
@@ -82,12 +151,44 @@
             <a href="labs/lab-6.html">Lab 6</a>
         </h1>
     </div>
+    <hr class="divider">
     <div class="box proj-box">
         <h1>
-            <a href="final-project/project-index.html">The Project</a>
+            <a href="final-project/project-index.html">The Project "M<sub>3</sub>H Restaurant"</a>
         </h1>
     </div>
 
+    <script>
+        const currentDateParagraph = document.getElementById("current-date");
+const dateOptionsSelectElement = document.getElementById("date-options");
+
+const date = new Date();
+const day = date.getDate();
+const month = date.getMonth() + 1;
+const year = date.getFullYear();
+const hours = date.getHours();
+const minutes = date.getMinutes();
+
+const formattedDate = `${day}-${month}-${year}`;
+currentDateParagraph.textContent = formattedDate;
+
+dateOptionsSelectElement.addEventListener("change", () => {
+
+  switch (dateOptionsSelectElement.value) {
+    case "yyyy-mm-dd":
+      currentDateParagraph.textContent = formattedDate
+        .split("-")
+        .reverse()
+        .join("-");
+      break;
+    case "mm-dd-yyyy-h-mm":
+      currentDateParagraph.textContent = `${month}-${day}-${year} ${hours} Hours ${minutes} Minutes`;
+      break;
+    default:
+        currentDateParagraph.textContent = formattedDate
+  }
+});
+    </script>
 
 </body>
 </html>

@@ -145,7 +145,7 @@ header .navigator a:hover{
 }
 
 .home-container{
-  background:url(../images/home-bg.jpg) no-repeat;
+  background:url(../final-project/images/home-bg.jpg) no-repeat;
   background-size: cover;
   background-position: center;
 }
@@ -486,6 +486,19 @@ header .navigator a:hover{
 
 .order .row form .btn:hover{
   background:var(--saddleBrown);
+}
+.alert{
+    width: 100%;
+    background-color: var(--saddleBrown);
+    padding :10px 20px;
+    border-radius: .5rem;
+    text-align: center;
+    font-size: 1.7rem;
+    font-weight: 500;
+    padding:.8rem 3rem;
+    border:.2rem solid black;
+    margin-top: 1rem;
+    display: none;
 }
 
 .footer{

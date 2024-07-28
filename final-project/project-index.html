@@ -386,23 +386,24 @@
                     <img src="images/food-delivery.png" alt="" />
                 </div>
 
-                <form action="connect.php" method="post">
+                <form id="projForm" action="">
                     <div class="inputBox">
-                        <input type="text" placeholder="first name" name="fname" maxlength="50" />
-                        <input type="text" placeholder="last name" name="lname" maxlength="50" />
+                        <input type="text" placeholder="first name" id="fname" maxlength="50" />
+                        <input type="text" placeholder="last name" id="lname" maxlength="50" />
                     </div>
 
                     <div class="inputBox">
-                        <input type="text" placeholder="phone number" name="Phone" maxlength="10" />
-                        <input type="email" placeholder="email" name="email" maxlength="100" />
+                        <input type="text"  id="phone" placeholder="Enter Phone Number" maxlength="10" />
+                        <input type="email"  id="email" placeholder="Enter Your Email" maxlength="100" />
                     </div>
 
-                    <textarea placeholder="address" name="add" id="" cols="30" rows="10" maxlength="250"></textarea>
+                    <textarea placeholder="Enter Your Address" name="add" id="address" cols="30" rows="10" maxlength="250"></textarea>
 
 
                     <input type="button" value="start again" class="btn" id="re" />
                     <input type="submit" value="order now" class="btn" />
                     <p class="btn1" id="outputPrice" name="totalPrice"></p>
+                    <div id ="msg" class="alert"></div>
                 </form>
             </div>
         </section>
@@ -433,6 +434,8 @@
         </div>
 
         <!-- custom js file link  -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/firebase/7.14.1-0/firebase.js"></script>
+<!--        <script src="firebaseDB.js"></script>-->
         <script src="theProject-script.js"></script>
     </body>
 </html>

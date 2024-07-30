@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JS, , Events, DOM, JSON, Ajax</title>
+    <link rel="stylesheet" href="stylesOfChapter.css">
+    <meta name="viewport" content="width=device-width  initial-scale=1.0">
+    <style>
+        select {
+         display: block;
+         margin: 20px auto 5px;
+         width: 50%;
+         height: 50px;
+         font-size: 10px;
+         cursor: pointer;
+       }
+    </style>
+</head>
+<body>
+    <div class="cover-page">
+        <h1>JS: Java Script </h1>
+        <nav>
+            <a href="#intro-section">Mouse And Keyboard Events</a>
+            <a href="#DOM-API">Document Object Model API </a>
+            <a href="#JSON">JSON</a>
+            <a href="#AJAX">AJAX </a>
+        </nav>
+    </div>
+    <section id="intro-section">
+        <div>
+            <h1>Mouse And Keyboard Events</h1>
+            <ul>
+                <li>Mouse Events</li>
+                <li>Keyboard Events</li>
+            </ul>
+        </div>
+        <div>
+            <h1>Mouse Events </h1>
+            <p>* They are triggered when mouse is used, The most common Mouse Events are: <code>click, dbclick, mouseup, mousedown</code> </p>
+            <p>* There are two approaches to register these events</p>
+            <ol>
+                <li> inline in HTML using onEvent property of tags ie, onclick = "callAFunction()" <br> <button onclick="handleIt()">Clock Me (: </button></li>
+
+                <li> Dynamically in JS by adding an event handler using addEventListener() method <br><button id="sadButton" onclick="handleIt()">Don't Clock Me ): </button></li>
+            </ol>
+
+
+        </div>
+        <div>
+            <h1>Keyboard Events</h1>
+            <p>* They are triggered when key of the keyboard is used, There are  two keyboard Events : <code>keydown, and keyup</code> </p>
+            <p>* There are two approaches to register these events</p>
+            <ol>
+                <li> inline in HTML using onEvent property of tags ie, onkeydown, onkeyup  = "callAFunction()" <br> <input type="text"  onkeyup="handleKeyEvent(event)"> <p id="result">You've Entered: </p></li>
+
+            </ol>
+        </div>
+
+    </section>
+    <section id="DOM-API">
+        <div>
+            <h1>Document Object Model API</h1>
+            <ul>
+                <li>Mouse Events</li>
+                <li>Keyboard Events</li>
+            </ul>
+        </div>
+        <div>
+            <ul>
+                <li>DOM: represents the structure of a page to allow programs manipulates the page and its content, even its styles</li>
+                <li>It allows us to create dynamic web pages by allowing JS to interact with HTML and CSS</li>
+                <li>It also represents the page as a logical tree of nodes each branch end with a node and each node contain an object</li>
+                <li>DOM has built in nodes like document and window, in also has HTML nodes like p and div </li>
+                <li>It also can be a comment Node or a text Node, which is referred to the text inside an element</li>
+                
+            </ul>
+            <img src="https://cpit405.github.io/js-slides/images/dom-tree-example.svg" width="200" height="400" alt="tree">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Node Type</th>
+                        <th>Example</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th><code>ELEMENT_NODE</code></th>
+                        <td>Any HTML Element such as <code>p, h1, ul, or div </code></td>
+                    </tr>
+                    <tr>
+                        <th><code>ATTRIBUTE_NODE</code></th>
+                        <td>Any Attribute of an HTML Element such as <code>href in a, or src in img</code></td>
+                    </tr>
+                    <tr>
+                        <th><code>TEXT_NODE</code></th>
+                        <td>The actual text inside an element or an attribute.</td>
+                    </tr>
+                    <tr>
+                        <th><code>COMMENT_NODE</code></th>
+                        <td>Comment Node.</td>
+                    </tr>
+                    <tr>
+                        <th><code>DOCUMENT_NODE</code></th>
+                        <td>Represents the web page loaded in the browser, The actual document that contain the content of a window.</td>
+                    </tr>
+                    <tr>
+                        <th><code>WINDOW_NODE</code></th>
+                        <td>Represents the root of DOM and the window that contain the DOM document .</td>
+                    </tr>
+                </tbody>
+            </table>
+            <br>
+            <!-- Selecting elements -->
+            <h2>Selecting individual elements</h2>
+            <h3>* We can select or query elements as follows</h3>
+            <ol>
+                <li>Element ID: <code>getElementById(id ie. box)</code>:It returns an Element its id matches the given id</li>
+
+                <li>Element TAG name: <code>getElementsByTagName(name ie. input or div)</code>: it returns a list of nodes in the document that matches the given tag</li>
+                <li>Element Name: <code>getElementsByName(name)</code>: it returns a list of nodes in the document that its name attribute matches the given name attribute value</li>
+                <li>CSS Selector: <code>querySelector / All (selector / selectors)</code> find the first element that match the css selector / or a list of all elements that matches the given css selector</li>
+            </ol>
+            <p>We can change the style of the element by specifing <code>element.style.CSS_Property</code> and give it the appropriate value</p>
+            <p>NOTE the CSS Property should be in a camelCase form as in backgroundColor not background-color</p>
+
+            <hr>
+            <!--Example-->
+
+            <select id="coloring" style=" font-size: 1.6rem;
+          text-align: center;">
+                <option value="">Select a Color</option>
+                <option value="red">Red</option>
+                <option value="green">Green</option>
+                <option value="blue">Blue</option>
+            </select>
+            <div id = "divToColor"> Color Background will change according to the selected one</div>
+            <hr>
+            <h2>DOM Tree Traversal</h2>
+            <p>Once we select an element we can traverse through the whole tree</p>
+            <ul>
+                <li>Ancestors</li>
+                <ul>
+                    <li>.parentNode: returns the parent node object</li>
+                    <li>.parentElement: returns the parent HTML element node</li>
+                    <li>.closest(selector): takes a CSS selector and returns the closest ancestor</li>
+                </ul>
+                <li>Descendants: children</li>
+                <ul>
+                    <li>Children: <code>childNodes, .children, .firstChild, .firstElementChild, .lastChild, .lastElementChild</code></li>
+                    <li>Siblings: <code> previousSibling, previousElementSibling, nextSibling, and nextElementSibling</code></li>
+                </ul>
+            </ul>
+            <h3> - After traversing the tree, we Can Create element / node , Append Child, or Remove.</h3>
+            <h4> - inserting in a more specific location using <code>myElement.insertAdjacentText(where, text);</code></h4>
+            <h4><strong> - Where: </strong> <code>beforebegin, afterbegin, beforeend, afterend</code></h4>
+            <img src="../img.png"height="300" alt="where">
+            <h3> - remove using <code>obj.remove();</code></h3>
+        </div>
+        
+    </section>
+    <section id="JSON">
+        <div>
+            <h1>JSON</h1>
+        </div>
+        <div>
+            <img src="https://cpit405.github.io/js-slides/images/json-intro.png" alt="how-json-works">
+            <h3>Basically: Request and Response that contain a JSON formed file the JSON file contains the data as shown in the image above.</h3>
+        </div>
+        <div>
+            <ul>
+                <li>JSON: JavaScript Object Notation: a lightweight text format facilitate the data interchange between web server and client </li>
+                <li>its independent but a subset of JS, and it replaces XML, most programming languages support JSON encoding and decoding</li>
+                <li>Syntax: Key/Value Pairs e.g. <code>{"name" : "HmzH"}</code></li>
+                <li><strong>Key:</strong> is any string in double quotation</li>
+                <li><strong>Value:</strong> String, number boolean, null, obj, or array</li>
+                <li>data must be inside a curly braces, array use square brackets</li>
+                <li>we can use <code>JSON.stringify()</code>to convert JS object to a JSON String as HTTP exchange only string format</li>
+                <li>After receiving a string FROM HTTP we can use <code>JSON.parse()</code> to convert it to a JS object and use its data in the script</li>
+            </ul>
+        <!-- JSON Example -->
+            <code id="json-block"></code>
+            <code id="json-block2" style="display: block">After Change: </code>
+        </div>
+    </section>
+    <section id="AJAX">
+        <div><h1>AJAX</h1></div>
+        <div>
+            <h3>Used to send and retrieve data from and API</h3>
+            <h3>The <code>XMLHttpRequest</code> is used in JS to send Http requests over the network</h3>
+            <h3>The <code>XMLHttpRequest.readyState</code> property returns state of the client</h3>
+            <ul>
+                <li>0: unsent: Client created but <code>open()</code> was not called yet</li>
+                <li>1: opened: The <code>open()</code> was called </li>
+                <li>2: HEADERS_RECEIVED: The <code>sent()</code> was called and headers and status are available</li>
+                <li>3: Loading: Processing/Downloading <code>responseText()</code> contains partial data </li>
+                <li>4: Done: The operation is now complete</li>
+            </ul>
+        </div>
+    </section>
+    <script>
+
+        var user = {
+            name: "Hmzh",
+            lang: ["JS", "HTML", "CSS"]
+        };
+        //
+        var jsonText = JSON.stringify(user);
+        const code = document.getElementById("json-block");
+        code.innerText = jsonText;
+
+        var jsObj = JSON.parse(jsonText);
+        jsObj.name = "HmzhDubh";
+        jsObj.lang.push("paython");
+        var jsonText = JSON.stringify(jsObj);
+        const code2 = document.getElementById("json-block2");
+        code2.innerText += jsonText;
+
+
+        //
+        function handleIt(){alert("You Click The Button (; ")}
+
+        let sadButton = document.getElementById("sadButton");
+        sadButton.addEventListener("click", handleIt);
+
+        function handleKeyEvent(e) {
+          let pElem = document.getElementById("result");
+
+          const numeralsInAr = "٠١٢٣٤٥٦٧٨٩";
+          const numeralsInEn = "0123456789";
+
+          if (e.keyCode >= 48 && e.keyCode <= 57) {
+            let i = numeralsInAr.indexOf(e.key);
+            if (i > -1) {
+              pElem.innerText += numeralsInEn[i];
+            } else {
+              pElem.innerText += e.key;
+            }
+          }
+        }
+        const select = document.getElementById("coloring");
+        const div = document.getElementById("divToColor");
+        select.addEventListener("change", function(){
+            div.style.backgroundColor = select.value;
+            div.style.color = "white";
+        });
+
+    </script>
+</body>
+</html>

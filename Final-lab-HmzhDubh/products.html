@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H3D - Products</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1><span class="Store-name">H<sub>3</sub>D</span> Products</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <h2>Our Products</h2>
+        <div class="filters">
+            <input class="data" type="text" id="search" placeholder="Search products">
+            <select id="category">
+                <option value="">All Categories</option>
+                <option value="electronics">Electronics</option>
+                <option value="clothing">Clothing</option>
+                <option value="books">Books</option>
+            </select>
+            <input type="number" id="min-price" placeholder="Min Price">
+            <input type="number" id="max-price" placeholder="Max Price">
+            <button class="btn">Apply Filters</button>
+        </div>
+        <div id="product-list" class="product-grid"></div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <p>&copy; 2024 <span id="Store-Name">H<sub>3</sub>D</span>. All rights reserved To <span>Hmzh Dubh</span>.</p>
+        <p>You can find me on:
+            <a href="https://github.com/HmzhDubh" target="_blank" class="github-icon">
+                <i class="fab fa-github"></i></a>
+            <a href="https://www.instagram.com/hhha.d" target="_blank" class="insta-icon">
+                <i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/in/hamzadubh" target="_blank" class="linkedin-icon">
+                <i class="fab fa-linkedin-in"></i></a>
+            <a href="https://hmzhdubh.w3spaces.com/" target="_blank" class="websiteicon">
+                <i class="fa-solid fa-globe"></i></a>
+        </p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

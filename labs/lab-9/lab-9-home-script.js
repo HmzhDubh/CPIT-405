@@ -36,7 +36,7 @@ function createDOMElements(data) {
             imgElem.src = item.image;
             var itemId = item.id;
             imgA.innerText = item.title;
-            imgA.href = `./lab-9-about.html?rId=${itemId}`;
+            imgA.href = `./lab-9-about.html?id=${itemId}`;
             imgA.id = itemId;
 
             imgDiv.appendChild(imgElem);

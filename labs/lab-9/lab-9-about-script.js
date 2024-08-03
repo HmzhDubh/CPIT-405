@@ -30,10 +30,6 @@ function createRecipe(data){
 
     const divInfo = document.getElementById("PageInfo");
     let newDiv = document.createElement("div");
-    let hh = document.createElement("h1");
-
-    hh.innerText = "Ingredients";
-    newDiv.appendChild(hh);
     let par = document.createElement("p");
 
     for (item of data.extendedIngredients) {

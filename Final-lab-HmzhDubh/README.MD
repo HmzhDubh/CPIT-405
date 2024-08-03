@@ -1,5 +1,5 @@
 # H<sub>3</sub>D Stores 
-
+[Click Here To Navigate Through My website](http://hmzhdubh.me/CPIT-405/Final-lab-HmzhDubh/index.html)
 #### This project is for CPIT-405 Final Lab Exam, which is a website for a store.
 
 ## Pages

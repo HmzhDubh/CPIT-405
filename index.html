@@ -13,8 +13,53 @@
         body {
           color: var(--white);
           background-color: var(--dark-grey);
-          font-family: 'Fredoka One', cursive;;
+          font-family: Helvetica, Sans-serif ;
         }
+        .advice-card {
+  background-color: #313a48;
+  border-radius: 10px;
+  padding: 30px;
+  max-width: 400px;
+  text-align: center;
+  position: relative;
+  margin-top: 30px;
+  margin-bottom: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.advice-number {
+  color: #52ffa8;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 20px;
+}
+
+.advice-text {
+  color: #cee3e9;
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+
+
+.dice-button {
+  background-color: #52ffa8;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+}
+
+.dice-button:hover {
+  box-shadow: 0 0 40px rgba(82, 255, 168, 0.5);
+}
+.advice-card:hover {box-shadow: 0 0 40px #f5f8fc;}
         .title-container {
           margin: 10px 0;
           display: flex;
@@ -113,6 +158,18 @@
     </div>
     <p id="current-date"></p>
     <div class="divider"></div>
+    <div class="advice-card">
+        <h2 id="advice-id" class="advice-number"></h2>
+        <p id ="advice" class="advice-text"></p>
+
+        <button class="dice-button" onclick="rAdvice()">!</button>
+    </div>
+    <div class="divider"></div>
+    <div class="box">
+        <h1>
+            <a href="aboutMe/hmzhDubh.html">About Me "Hmzh Dubh"</a>
+        </h1>
+    </div>
     <div class="box">
         <h1>
             <a href="chapters/Chapter-1-InternetAndTheWeb.html">Chapter One (HTML) - Summary</a>
@@ -186,6 +243,30 @@
     </div>
 
     <script>
+        function rAdvice(){
+            const url = "https://api.adviceslip.com/advice";
+            const myAdvice = new XMLHttpRequest();
+
+
+            myAdvice.onreadystatechange = function(){
+                if(myAdvice.readyState === 4 && myAdvice.status === 200){
+
+                    const theAdvice = JSON.parse(myAdvice.responseText);
+                    console.log(theAdvice.slip.advice);
+                    const adviceElement = document.getElementById("advice");
+                    const idElement = document.getElementById("advice-id");
+
+                    adviceElement.innerText = theAdvice.slip.advice;
+                    idElement.innerText = `#${theAdvice.slip.id}`;
+
+
+                }else if(myAdvice.readyState === 4 && myAdvice.status !== 200){
+                    alert("Error", myAdvice.status, myAdvice.statusText);
+                }
+            }
+            myAdvice.open('GET', `${url}`, true);
+            myAdvice.send();
+        }
         const currentDateParagraph = document.getElementById("current-date");
         const dateOptionsSelectElement = document.getElementById("date-options");
 

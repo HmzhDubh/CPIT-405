@@ -1,0 +1,52 @@
+html{
+    scroll-behavior: smooth;
+}
+blockquote{
+    background:#FFF;
+    border:0;
+    border-radius:3px;
+    box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0
+    rgba(0,0,0,0.15);
+    margin: 1px;
+    max-width:540px;
+    min-width:326px;
+    padding:0;
+    width:99.375%;
+    width:-webkit-calc(100% - 2px);
+    width:calc(100% - 2px);
+}
+#cv-div{
+  animation:float 2s linear infinite;
+}
+@keyframes float{
+  0%, 100%{
+    transform: translateY(0rem);
+  }
+  50%{
+    transform: translateY(.8rem);
+  }
+}
+#download-cv{
+    text-decoration: none;
+}
+
+body, h1,h2,h3,h4,h5,h6 {
+    font-family: "Montserrat", sans-serif
+}
+.w3-row-padding img {
+    margin-bottom: 12px;
+}
+
+.w3-sidebar {
+    width: 120px;background: #222;
+}
+
+#main {
+    margin-left: 120px;
+}
+
+@media only screen and (max-width: 600px) {
+    #main {
+        margin-left: 0;
+    }
+}

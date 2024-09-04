@@ -25,8 +25,27 @@
         </div>
         <div>
             <h1>PHP Basic Syntax</h1>
-            <p>Variables: start with $ sign followed by the variable name which are case sensitive, we can add line like js and statements ends with ;</p>
-            <p>Arrays use regular </p>
+            <p>Variables: start with $ sign followed by the variable name which are case-sensitive, we can add line like js and statements ends with ;</p>
+            <p>Functions like js but it can take default parameter by giving the parameter a value thus it become default in case a parameter was not passed in the calling of the function</p>
+            <p>Arrays use regular brackets, and there are multiple types: </p>
+            <ul>
+                <li>indexed(index keys): $arr = array("a", "b", "c")</li>
+                <li>Associative(string keys): $arr = array("a" => "hmzh", "b" => "dubh") in this case "a" takes the value "hmzh" and become more human-readable</li>
+                <li>Multidimensional: nested with different lengths</li>
+            </ul>
+            <p>we can import PHP files using two statements</p>
+            <ol>
+                <li>include: file may be included but in cas in was not available to import the script will continue running, and it will produce a warning only</li>
+                <li>required: file is required to complete the rest of the script, if the file is not available error will be produced and the script will stop  </li>
+                <li>Both of the above statements can be associated with _once, which means PHP will check if files already been included/required, if they are, then it won't get them again </li>
+            </ol>
+            <h2>PHP is often used to handle submitting forms</h2>
+            <p>Validating form data on server side for security reasons, using "superglobals ($_GET and $_POST) to collect form data both of the contain array of data in name : value pairs</p>
+            <p>$_GET is used when data passed through URL parameters i.e. ?id=55 in the url and sent with the url to the server, which means data will be registered in the history so it should be to request data not submitting it specially if data sensitive like passwords</p>
+            <code>http://example.com/my_form.php?name=CPIT&number=405</code>
+            <p>$_POST -- via HTTP POST method, and it won't be registered in the history (more secure) and often used to submit data, where data sent in the bidy if the rquest not the url and the url is not added to the browser history</p>
+            <form id="myForm" action="phpScript.php" method="post"></form>
+
         </div>
     </section>
 </body>

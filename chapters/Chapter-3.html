@@ -195,10 +195,32 @@
                 <li>3: Loading: Processing/Downloading <code>responseText()</code> contains partial data </li>
                 <li>4: Done: The operation is now complete</li>
             </ul>
+            <button onclick="xmlReq()">Show Car Photo</button>
+        </div>
+        <div id="cat">
+            <img id="cat-img" src="" alt="">
         </div>
     </section>
     <script>
+        function xmlReq() {
+            var myObj = new XMLHttpRequest();
+            myObj.onreadystatechange = function(){
+                if(myObj.readyState === 4 && myObj.status === 200){
+                    const d = JSON.parse(myObj.responseText);
+                    console.log("d = " + d[0]);
 
+                    const catDiv = document.getElementById("cat");
+                    const img = document.getElementById("cat-img");
+                    img.src = d[0].url;
+                    catDiv.appendChild(img);
+
+                }else if (myObj.readyState === 4 && myObj.status !== 200){
+                    console.log("error", myObj.status, myObj.statusText);
+                }
+            }
+            myObj.open('GET', `https://api.thecatapi.com/v1/images/search?size=med&mime_types=jpg&format=json&has_breeds=true&order=RANDOM&page=0&limit=1`, true);
+            myObj.send();
+        }
         var user = {
             name: "Hmzh",
             lang: ["JS", "HTML", "CSS"]

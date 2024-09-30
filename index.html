@@ -16,50 +16,54 @@
           font-family: Helvetica, Sans-serif ;
         }
         .advice-card {
-  background-color: #313a48;
-  border-radius: 10px;
-  padding: 30px;
-  max-width: 400px;
-  text-align: center;
-  position: relative;
-  margin-top: 30px;
-  margin-bottom: 50px;
-  margin-left: auto;
-  margin-right: auto;
-}
+          background-color: #313a48;
+          border-radius: 10px;
+          padding: 30px;
+          max-width: 400px;
+          text-align: center;
+          position: relative;
+          margin-top: 30px;
+          margin-bottom: 50px;
+          margin-left: auto;
+          margin-right: auto;
+        }
 
-.advice-number {
-  color: #52ffa8;
-  font-size: 12px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  margin-bottom: 20px;
-}
+        .advice-number {
+          color: #52ffa8;
+          font-size: 12px;
+          letter-spacing: 3px;
+          text-transform: uppercase;
+          margin-bottom: 20px;
+        }
 
-.advice-text {
-  color: #cee3e9;
-  font-size: 24px;
-  margin-bottom: 30px;
-}
+        .advice-text {
+          color: #cee3e9;
+          font-size: 24px;
+          margin-bottom: 30px;
+        }
 
 
-.dice-button {
-  background-color: #52ffa8;
-  border: none;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  position: absolute;
-  bottom: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  cursor: pointer;
-}
+        .dice-button {
+          background-color: #52ffa8;
+          border: none;
+          border-radius: 50%;
+          width: 60px;
+          height: 60px;
+          position: absolute;
+          bottom: -30px;
+          left: 50%;
+          transform: translateX(-50%);
+          cursor: pointer;
+        }
 
-.dice-button:hover {
-  box-shadow: 0 0 40px rgba(82, 255, 168, 0.5);
-}
-.advice-card:hover {box-shadow: 0 0 40px #f5f8fc;}
+        .dice-button:hover {
+          box-shadow: 0 0 40px rgba(82, 255, 168, 0.5);
+        }
+
+        .advice-card:hover {
+            box-shadow: 0 0 40px #f5f8fc;
+        }
+
         .title-container {
           margin: 10px 0;
           display: flex;
@@ -162,7 +166,7 @@
         <h2 id="advice-id" class="advice-number"></h2>
         <p id ="advice" class="advice-text"></p>
 
-        <button class="dice-button" onclick="rAdvice()">!</button>
+        <button class="dice-button" onclick="rAdvice()">?</button>
     </div>
     <div class="divider"></div>
     <div class="box">
@@ -241,8 +245,46 @@
             <a href="Final-lab-HmzhDubh/index.html">The Final Lab Exam of Hmzh Dubh "H<sub>3</sub>D Store"</a>
         </h1>
     </div>
+    <div class="advice-card">
+        <h2 id="joke-id" class="advice-number"></h2>
+        <p id ="joke-p1" class="advice-text"></p>
+        <p id ="joke-p2" class="advice-text"></p>
+
+        <button class="dice-button" onclick="rJoke()">(;</button>
+    </div>
 
     <script>
+        function rJoke(){
+
+            const jokeElement1 = document.getElementById("joke-p1");
+            const jokeElement2 = document.getElementById("joke-p2");
+
+            const idElement = document.getElementById("joke-id");
+
+            jokeElement1.innerText = "";
+            jokeElement2.innerText = "";
+            idElement.innerText = "";
+
+            fetch('https://v2.jokeapi.dev/joke/Programming')
+            .then(response => response.json())
+            .then(data => {
+
+
+                idElement.innerText = data.category;
+
+                if(data.type === "twopart"){
+                    jokeElement1.innerText = data.setup
+                    jokeElement2.innerText = data.delivery
+                    console.log(`Joke Setup: ${data.setup}`);
+                    console.log(`Joke Delivery: ${data.delivery}`);
+                }
+                else if(data.type === "single"){
+                    console.log(`Joke: ${data.joke}`);
+                    jokeElement1.innerText = data.joke
+
+                }
+            });
+        }
         function rAdvice(){
             const url = "https://api.adviceslip.com/advice";
             const myAdvice = new XMLHttpRequest();

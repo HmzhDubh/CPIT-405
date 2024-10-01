@@ -2,130 +2,239 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Lap 5</title>
-    <style>body {
-    font-family: 'Fredoka One', cursive;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Photo Gallery</title>
+    <link rel="stylesheet" href="style.css">
+    <style>/* Basic styling for the gallery and modal */
 
-#gallery {
+body {
+    font-family: Arial, sans-serif;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    margin-top: 20px;
-}
-
-.photo {
-    margin: 10px;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    overflow: hidden;
-    width: 150px;
-    height: 150px;
-    display: flex;
     align-items: center;
-    justify-content: center;
-    position: relative;
+    height: 100vh;
+    margin: 0;
+    background-color: #f4f4f4;
 }
 
-.photo img {
-    max-width: 100%;
-    max-height: 100%;
+h1 {
+    text-align: center;
 }
 
-.zoom-in, .zoom-out {
-    position: absolute;
-    bottom: 5px;
-    background-color: rgba(255, 255, 255, 0.7);
+.gallery-container {
+    width: 80%;
+    max-width: 1000px;
+    margin: auto;
+    text-align: center;
+}
+
+.add-photo-form {
+    margin: 20px 0;
+}
+
+#image-url {
+    width: 300px;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #5cb85c;
+    color: white;
     border: none;
     cursor: pointer;
 }
 
-.zoom-in {
-    left: 5px;
+button:hover {
+    background-color: #4cae4c;
 }
 
-.zoom-out {
-    right: 5px;
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.gallery img {
+    width: 200px;
+    height: 150px;
+    object-fit: cover;
+    margin: 10px;
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+}
+
+/* Modal for zoomed image */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.modal-content {
+    margin: auto;
+    display: block;
+    width: 60%;
+    max-width: 700px;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 40px;
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 700px) {
+    .modal-content {
+        width: 80%;
+    }
 }
     </style>
 </head>
 <body>
-<h2>Group Effort:</h2>
-<header>
-    <h2>Moath Alsolami</h2>
-    <h2>Muhanned Almehmadi</h2>
-    <h2>Majed Aljehani</h2>
-    <h2>Hamza Dubh</h2>
-</header>
-<h1>Photo Gallery</h1>
-<div id="gallery"></div>
-<input type="text" id="photo-url" placeholder="Enter photo URL ">
-<input type="file" id="photo-file">
-<button id="add-photo">Add Photo</button>
+<div class="gallery-container">
+    <h1>Dynamic Photo Gallery</h1>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-    const gallery = document.getElementById('gallery');
-    const photoUrlInput = document.getElementById('photo-url');
-    const photoFileInput = document.getElementById('photo-file');
-    const addPhotoButton = document.getElementById('add-photo');
+    <!-- Form to add new photos -->
+    <div class="add-photo-form">
+        <input type="text" id="image-url" placeholder="Enter Image URL">
+        <button id="add-photo-btn">Add Photo</button>
+    </div>
 
-    addPhotoButton.addEventListener('click', () => {
-        const photoUrl = photoUrlInput.value.trim();
-        const photoFile = photoFileInput.files[0];
+    <!-- Photo gallery grid -->
+    <div id="photo-gallery" class="gallery"></div>
+</div>
 
-        if (photoUrl) {
-            addPhoto(photoUrl);
-            photoUrlInput.value = '';
-        } else if (photoFile) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                addPhoto(e.target.result);
-            };
-            reader.readAsDataURL(photoFile);
-            photoFileInput.value = '';
-        }
-    });
+<!-- Zoomed Image Modal -->
+<div id="zoom-modal" class="modal">
+    <span class="close">&times;</span>
+    <img id="zoomed-image" class="modal-content">
+</div>
 
-    function addPhoto(src) {
-        const photoDiv = document.createElement('div');
-        photoDiv.className = 'photo';
+<script>// Get elements from the DOM
+const addPhotoBtn = document.getElementById('add-photo-btn');
+const imageUrlInput = document.getElementById('image-url');
+const gallery = document.getElementById('photo-gallery');
+const modal = document.getElementById('zoom-modal');
+const zoomedImage = document.getElementById('zoomed-image');
+const closeModal = document.querySelector('.close');
 
+// Function to add a new photo to the gallery
+function addPhoto() {
+    const imageUrl = imageUrlInput.value.trim();
+
+    if (imageUrl) {
         const img = document.createElement('img');
-        img.src = src;
+        img.src = imageUrl;
+        img.alt = 'Gallery Image';
+        img.addEventListener('click', () => {
+            zoomImage(imageUrl);
+        });
 
-
-        const zoomInButton = document.createElement('button');
-        zoomInButton.className = 'zoom-in';
-        zoomInButton.innerText = '+';
-        zoomInButton.addEventListener('click', () => zoomIn(img));
-
-        const zoomOutButton = document.createElement('button');
-        zoomOutButton.className = 'zoom-out';
-        zoomOutButton.innerText = '-';
-        zoomOutButton.addEventListener('click', () => zoomOut(img));
-
-        photoDiv.appendChild(img);
-        photoDiv.appendChild(zoomInButton);
-        photoDiv.appendChild(zoomOutButton);
-
-        gallery.appendChild(photoDiv);
+        gallery.appendChild(img);
+        imageUrlInput.value = '';  // Clear the input field
+    } else {
+        alert('Please enter a valid image URL');
     }
+}
 
-    function zoomIn(img) {
-        img.style.width = (img.clientWidth * 1.2) + 'px';
-        img.style.height = (img.clientHeight * 1.2) + 'px';
-    }
+// Function to zoom in on an image (open modal)
+function zoomImage(url) {
+    zoomedImage.src = url;
+    modal.style.display = 'block';
+}
 
-    function zoomOut(img) {
-        img.style.width = (img.clientWidth / 1.2) + 'px';
-        img.style.height = (img.clientHeight / 1.2) + 'px';
+// Event listener to close the modal
+closeModal.addEventListener('click', () => {
+    modal.style.display = 'none';
+});
+
+// Event listener for the "Add Photo" button
+addPhotoBtn.addEventListener('click', addPhoto);
+
+// Optional: Close modal when clicking outside the image
+window.addEventListener('click', (event) => {
+    if (event.target === modal) {
+        modal.style.display = 'none';
     }
 });
+
 
 </script>
 </body>
 </html>
+
+<!--<script>-->
+<!--    document.addEventListener('DOMContentLoaded', () => {-->
+<!--    const gallery = document.getElementById('gallery');-->
+<!--    const photoUrlInput = document.getElementById('photo-url');-->
+<!--    const photoFileInput = document.getElementById('photo-file');-->
+<!--    const addPhotoButton = document.getElementById('add-photo');-->
+
+<!--    addPhotoButton.addEventListener('click', () => {-->
+<!--        const photoUrl = photoUrlInput.value.trim();-->
+<!--        const photoFile = photoFileInput.files[0];-->
+
+<!--        if (photoUrl) {-->
+<!--            addPhoto(photoUrl);-->
+<!--            photoUrlInput.value = '';-->
+<!--        } else if (photoFile) {-->
+<!--            const reader = new FileReader();-->
+<!--            reader.onload = function(e) {-->
+<!--                addPhoto(e.target.result);-->
+<!--            };-->
+<!--            reader.readAsDataURL(photoFile);-->
+<!--            photoFileInput.value = '';-->
+<!--        }-->
+<!--    });-->
+
+<!--    function addPhoto(src) {-->
+<!--        const photoDiv = document.createElement('div');-->
+<!--        photoDiv.className = 'photo';-->
+
+<!--        const img = document.createElement('img');-->
+<!--        img.src = src;-->
+
+
+<!--        const zoomInButton = document.createElement('button');-->
+<!--        zoomInButton.className = 'zoom-in';-->
+<!--        zoomInButton.innerText = '+';-->
+<!--        zoomInButton.addEventListener('click', () => zoomIn(img));-->
+
+<!--        const zoomOutButton = document.createElement('button');-->
+<!--        zoomOutButton.className = 'zoom-out';-->
+<!--        zoomOutButton.innerText = '-';-->
+<!--        zoomOutButton.addEventListener('click', () => zoomOut(img));-->
+
+<!--        photoDiv.appendChild(img);-->
+<!--        photoDiv.appendChild(zoomInButton);-->
+<!--        photoDiv.appendChild(zoomOutButton);-->
+
+<!--        gallery.appendChild(photoDiv);-->
+<!--    }-->
+
+<!--    function zoomIn(img) {-->
+<!--        img.style.width = (img.clientWidth * 1.2) + 'px';-->
+<!--        img.style.height = (img.clientHeight * 1.2) + 'px';-->
+<!--    }-->
+
+<!--    function zoomOut(img) {-->
+<!--        img.style.width = (img.clientWidth / 1.2) + 'px';-->
+<!--        img.style.height = (img.clientHeight / 1.2) + 'px';-->
+<!--    }-->
+<!--});-->
+
+<!--</script>-->

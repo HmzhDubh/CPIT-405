@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Firebase configuration
     const firebaseConfig = {
-        apiKey: "AIzaSyAIctYvepVDKAyZrUpAc76qEkTfx8WaNBQ",
+        apiKey: "Your_api_key",
         authDomain: "m3h-restaurant.firebaseapp.com",
         databaseURL: "https://m3h-restaurant-default-rtdb.firebaseio.com",
         projectId: "m3h-restaurant",
